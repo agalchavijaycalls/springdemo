@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.example.demo.restdemo.security.Http401UnauthorizedEntryPoint;
+import com.example.demo.restdemo.security.UserDetailsService;
 import com.example.demo.restdemo.security.jwt.JWTConfigurer;
 import com.example.demo.restdemo.security.jwt.TokenProvider;
 import org.springframework.beans.factory.BeanInitializationException;
@@ -13,7 +15,6 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;

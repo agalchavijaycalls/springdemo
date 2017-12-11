@@ -1,4 +1,4 @@
-package com.example.demo.restdemo.services;
+package com.example.demo.restdemo.controllers;
 
 import com.example.demo.restdemo.dao.AccountRepository;
 import com.example.demo.restdemo.dao.BookmarkRepository;
