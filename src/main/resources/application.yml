@@ -1,0 +1,21 @@
+custom:
+    security:
+        authentication:
+            jwt:
+                secret: mysecrettoken
+                token-validity-in-seconds: 600
+                refresh-token-validity-in-seconds: 900
+
+spring:
+  profiles:
+          active: dev
+          serialization.indent_output: true
+    datasource:
+      url: jdbc:h2:mem:testdb
+      username: sa
+      password: sa
+      driver-class-name: org.h2.Driver
+  h2:
+          console:
+              enabled: true
+              path: /h2-console
