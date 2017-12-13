@@ -1,10 +1,7 @@
 package com.example.demo.restdemo.domain;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -13,13 +10,14 @@ import java.io.Serializable;
  * An authority (a security role) used by Spring Security.
  */
 @Entity
+@Table(name = "AUTHORITY")
 public class Authority implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
     @NotNull
     @Size(min = 0, max = 50)
-    @Id
     @Column(name = "NAME", length = 50)
     private String name;
 

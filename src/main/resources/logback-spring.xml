@@ -6,8 +6,15 @@
         <appender-ref ref="CONSOLE"/>
         <!--<appender-ref ref="FILE"/>-->
     </logger>
-    <logger name="org.springframework" level="WARN" additivity="false">
+    <logger name="org.springframework" level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE"/>
         <!--<appender-ref ref="FILE"/>-->
     </logger>
+    <logger name="org.hibernate" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <!--<appender-ref ref="FILE"/>-->
+    </logger>
+    <root level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+    </root>
 </configuration>

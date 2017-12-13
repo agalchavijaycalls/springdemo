@@ -6,9 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.io.Serializable;
 
 @Entity
-public class Bookmark {
+public class Bookmark implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
@@ -19,20 +20,20 @@ public class Bookmark {
 
     @JsonIgnore
     @ManyToOne
-    private Account account;
+    private User account;
 
 
-    Bookmark() { // jpa only
+    Bookmark() {
     }
 
-    public Bookmark(Account account, String uri, String description) {
+    public Bookmark(User account, String uri, String description) {
         this.uri = uri;
         this.description = description;
         this.account = account;
     }
 
 
-    public Account getAccount() {
+    public User getAccount() {
         return account;
     }
 

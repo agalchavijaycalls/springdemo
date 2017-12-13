@@ -16,31 +16,32 @@ import java.util.Locale;
 import java.util.Set;
 
 @Entity
-public class User extends AbstractAuditingEntity implements Serializable {
+@Table(name = "USER")
+public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Long id;
 
     @NotNull
     @Pattern(regexp = Constants.LOGIN_REGEX)
     @Size(min = 1, max = 50)
-    @Column(name = "LOGIN", length = 50, unique = true, nullable = false)
-    private String login;
+    @Column(name = "USERNAME", length = 50, unique = true, nullable = false)
+    private String username;
 
     @JsonIgnore
     @NotNull
     @Size(min = 60, max = 60)
-    @Column(name = "PASSWORD_HASH", length = 60)
+    @Column(name = "PASSWORD", length = 60)
     private String password;
 
     @Size(max = 50)
-    @Column(name = "FIRST_NAME", length = 50)
+    @Column(name = "FIRSTNAME", length = 50)
     private String firstName;
 
     @Size(max = 50)
-    @Column(name = "LAST_NAME", length = 50)
+    @Column(name = "LASTNAME", length = 50)
     private String lastName;
 
     @Email
@@ -57,9 +58,18 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @BatchSize(size = 20)
     private Set<Authority> authorities = Sets.newHashSet();
 
+    @Column(name = "ACCOUNTNONEXPIRED", length = 50)
+    private boolean accountNonExpired;
+    @Column(name = "ACCOUNTNONLOCKED", length = 50)
+    private boolean accountNonLocked;
+    @Column(name = "CREDENTIALSNONEXPIRED", length = 50)
+    private boolean credentialsNonExpired;
+    @Column(name = "ENABLED", length = 50)
+    private boolean enabled;
 
-    public void setLogin(String login) {
-        this.login = login.toLowerCase(Locale.ENGLISH);
+
+    public void setUsername(String username) {
+        this.username = username.toLowerCase(Locale.ENGLISH);
     }
 
     public Set<Authority> getAuthorities() {
@@ -77,7 +87,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
         User user = (User) o;
 
-        if (!login.equals(user.login)) {
+        if (!username.equals(user.username)) {
             return false;
         }
 
@@ -92,8 +102,8 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
@@ -132,15 +142,47 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.authorities = authorities;
     }
 
+    public boolean isAccountNonExpired() {
+        return accountNonExpired;
+    }
+
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
+    }
+
+    public boolean isAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
+
+    public boolean isCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public int hashCode() {
-        return login.hashCode();
+        return username.hashCode();
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "login='" + login + '\'' +
+                "username='" + username + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' + "}";

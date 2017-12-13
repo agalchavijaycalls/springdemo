@@ -32,15 +32,8 @@ public class UserDetailsService implements org.springframework.security.core.use
     public UserDetails loadUserByUsername(final String login) {
         LOG.debug("Authenticating {}", login);
         String lowercaseLogin = login.toLowerCase(Locale.ENGLISH);
-        User user1 = new User();
-        Authority authority = new Authority();
-        authority.setName("ROLE_ADMIN");
-        user1.setAuthorities(Sets.newHashSet(authority));
-        user1.setLogin("admin");
-        user1.setPassword("$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC");
-        Optional<User> userO = Optional.of(user1);
-        Optional<User> userFromDatabase = userRepository.findOneWithAuthoritiesByLogin(lowercaseLogin);
-        return userO.map(user -> {
+        Optional<User> userFromDatabase = userRepository.findOneWithAuthoritiesByUsername(lowercaseLogin);
+        return userFromDatabase.map(user -> {
             List<GrantedAuthority> grantedAuthorities = createGrantedAuthorities(user);
             return new org.springframework.security.core.userdetails.User(lowercaseLogin, user.getPassword(), grantedAuthorities);
         }).orElseThrow(() -> new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the " + "database"));
