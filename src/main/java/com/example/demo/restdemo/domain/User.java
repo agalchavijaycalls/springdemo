@@ -58,13 +58,13 @@ public class User implements Serializable {
     @BatchSize(size = 20)
     private Set<Authority> authorities = Sets.newHashSet();
 
-    @Column(name = "ACCOUNTNONEXPIRED", length = 50)
+    @Column(name = "ACCOUNTNONEXPIRED")
     private boolean accountNonExpired;
-    @Column(name = "ACCOUNTNONLOCKED", length = 50)
+    @Column(name = "ACCOUNTNONLOCKED")
     private boolean accountNonLocked;
-    @Column(name = "CREDENTIALSNONEXPIRED", length = 50)
+    @Column(name = "CREDENTIALSNONEXPIRED")
     private boolean credentialsNonExpired;
-    @Column(name = "ENABLED", length = 50)
+    @Column(name = "ENABLED")
     private boolean enabled;
 
 
