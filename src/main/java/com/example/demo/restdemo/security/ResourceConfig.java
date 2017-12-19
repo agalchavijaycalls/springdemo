@@ -59,9 +59,9 @@ public class ResourceConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http
 
-                .exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint)
+//                .exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint)
 //                .and().exceptionHandling().authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/"))
-                .and()
+//                .and()
                 .logout()
                 .logoutUrl("/oauth/logout")
                 .logoutSuccessHandler(customLogoutSuccessHandler)
